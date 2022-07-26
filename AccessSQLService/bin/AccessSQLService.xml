@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AccessSQLService
+</name>
+</assembly>
+<members>
+<member name="F:AccessSQLService.Service1.sqlCon">
+ <summary>
+ Query data
+ </summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,91 @@
+<%@ master language="VB" inherits="MasterPageMain, App_Web_q03m2tky" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" style="width:100%; height:100%;">
+<head runat="server">
+    <title>Fixed Assets</title>
+    <link href="App_Themes/Theme1/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="~/image/favicon.ico" />
+</head>
+<body onkeydown="cancelBack()" style="width:100%; height:100%;">
+    <form id="form1" runat="server" style="width:100%; height:100%;">
+    <div style="width:100%; height:100%;">
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+<script type="text/javascript">
+function CancelPostBack() {
+    var objMan = Sys.WebForms.PageRequestManager.getInstance();
+    if (objMan.get_isInAsyncPostBack())
+        objMan.abortPostBack();
+}//window.pageYOffset
+function cancelBack(){   
+    if ((event.keyCode == 8 ||    
+       (event.keyCode == 37 && event.altKey) ||    
+       (event.keyCode == 39 && event.altKey))   
+        &&    
+       (event.srcElement.form == null || event.srcElement.isTextEdit == false)){   
+        event.cancelBubble = true;   
+        event.returnValue = false;   
+    }
+}
+</script>
+    <table style="width:100%; height:100%;" border="1">
+        <tr>
+            <td style="width:100px;" valign="top">
+                    <asp:Image ID="imgHOYA" runat="server" 
+                        ImageUrl="~/image/HOYA_logo.png"/>
+                        <table style="padding-top:10px">
+                            <tr>
+                                <td>
+                                    <asp:TreeView ID="TreeView1" runat="server">
+                                        <HoverNodeStyle BackColor="Lime" />
+                                        <Nodes>
+                                            <asp:TreeNode Text="Fixed Assets" Value="Fixed Assets" SelectAction="Expand">
+                                                <asp:TreeNode NavigateUrl="~/Default.aspx" Text="Asset List" Value="Asset List">
+                                                </asp:TreeNode>
+                                                <asp:TreeNode NavigateUrl="~/AssetDetail.aspx" Text="Asset Detail" 
+                                                    Value="Asset Detail"></asp:TreeNode>
+                                                <asp:TreeNode NavigateUrl="~/CheckAssets.aspx" Text="Check Assets" 
+                                                    Value="Check Assets"></asp:TreeNode>
+                                            </asp:TreeNode>
+                                            <asp:TreeNode SelectAction="Expand" Text="Reports" Value="Reports">
+                                                <asp:TreeNode NavigateUrl="~/PrintAssets.aspx" Text="Print Assets" 
+                                                    Value="Print Assets"></asp:TreeNode>
+                                            </asp:TreeNode>
+                                            <asp:TreeNode SelectAction="Expand" Text="Administrator" Value="Administrator">
+                                                <asp:TreeNode NavigateUrl="~/CheckControl.aspx" Text="Check Assets Control" 
+                                                    Value="Check Assets Control"></asp:TreeNode>
+                                                <asp:TreeNode NavigateUrl="~/Users.aspx" Text="Users Managment" 
+                                                    Value="Users Managment"></asp:TreeNode>
+                                            </asp:TreeNode>
+                                        </Nodes>
+                                        <SelectedNodeStyle BackColor="Lime" />
+                                    </asp:TreeView>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+            </td>
+            <td valign="top">
+                    <table style="width:100%;">
+                        <tr>
+                            <td align="right">
+                                Log in as:
+                                <asp:Label ID="lblUser" runat="server"></asp:Label>
+&nbsp;<asp:LinkButton ID="lbtLogOut" runat="server">Log Out</asp:LinkButton>
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                    </asp:contentplaceholder>
+            </td>
+        </tr>
+        
+    </table>
+    </div>
+    </form>
+</body>
+</html>
